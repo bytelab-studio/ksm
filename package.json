@@ -1,0 +1,34 @@
+{
+    "name": "ksm",
+    "version": "1.0.0",
+    "description": "A KISS server management tool",
+    "main": "out/api.js",
+    "types": "dec/api.d.ts",
+    "author": "Christoph Koschel",
+    "license": "MIT",
+    "keywords": [
+        "server",
+        "management",
+        "server-management"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0",
+        "postinstall": "node ./scripts/postinstall.js",
+        "preuninstall": "node ./scripts/preuninstall.js"
+    },
+    "bin": {
+        "ksm": "./out/bin/ksm.js",
+        "ksm-cycle": "./out/bin/ksm-cycle.js"
+    },
+    "dependencies": {
+        "@koschel-christoph/node.options": "^1.0.2"
+    },
+    "engines": {
+        "node": ">=15.0.0"
+    },
+    "files": [
+        "scripts",
+        "out",
+        "dec"
+    ]
+}
