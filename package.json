@@ -1,5 +1,5 @@
 {
-    "name": "ksm",
+    "name": "@bytelab.studio/ksm",
     "version": "1.0.0",
     "description": "A KISS server management tool",
     "main": "out/api.js",
