@@ -38,7 +38,7 @@ KSM focuses on simple server management that:
 ## Installation
 
 ```shell
-npm install -g ksm
+npm install -g @bytelab.studio/ksm
 ```
 
 > The installation requires root privileges because cronjob and other system-wide configuration files must be created.
