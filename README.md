@@ -46,7 +46,7 @@ npm install -g @bytelab.studio/ksm
 ## Commands
 
 ```shell
-ksm add
+ksm install
 ```
 
 Adds a server to the serverlist when a config file isn't given, the command looks in the current directory for
@@ -54,7 +54,7 @@ a `ksm.json` file.
 Optional the `--start` flag can be set to start the server as well.
 
 ```shell
-ksm remove
+ksm uninstall
 ```
 
 Removes a server from the serverlist when a config file isn't given, the command looks in the current directory for

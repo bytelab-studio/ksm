@@ -1,19 +1,18 @@
-import * as api from "../api";
 import {logger} from "../logger";
+import * as api from "../api";
 
 import * as path from "path";
 import * as fs from "fs";
 
 import {OptionSet} from "@koschel-christoph/node.options";
 
-export default function add(args: string[]): number {
+export default function uninstall(args: string[]): number {
     let serverFile: string = path.join(process.cwd(), "ksm.json");
     let help: boolean = false;
-    let start: boolean = false;
+
     const option: OptionSet = new OptionSet(
-        "Usage: ksm add [<>] [<options>]",
+        "Usage: ksm uninstall [<>] [<options>]",
         ["<>", "Path to a config file", v => serverFile = v],
-        ["start", "Starts the server", () => start = true],
         ["h|help", "Prints this help string", () => help = true]
     );
     option.parse(args, false);
@@ -31,21 +30,16 @@ export default function add(args: string[]): number {
         return 1;
     }
 
-    const serverConfig: api.ServerConfig = api.configuration.readServerConfig(serverFile);
-    const config: api.Config = api.configuration.readConfig();
     const serverlist: api.Serverlist = api.configuration.readServerlist();
+    const entry: api.ServerEntry | undefined = serverlist.find(s => s.path == serverFile);
 
-    if (api.controller.serverExistInConfig(serverFile, serverlist)) {
-        logger.error("Server already added.");
+    if (!entry) {
+        logger.error("Server is not installed.");
         return 0;
     }
 
-    serverlist.push({
-        path: serverFile,
-        pid: start ? api.controller.spawnServer(serverFile, serverConfig, config) : -1
-    });
-
-    api.configuration.writeServerlist(serverlist);
+    api.configuration.writeServerlist(serverlist.filter(s => s != entry));
+    api.controller.stopService(entry.fid);
+    api.configuration.deleteService(entry.fid);
     return 0;
 }
-

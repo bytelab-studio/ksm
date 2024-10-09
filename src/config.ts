@@ -4,6 +4,7 @@ import {handleException} from "./utils";
 import {Config, ServerConfig, Serverlist} from "./api";
 
 import fs from "fs";
+import path from "path";
 
 export namespace configuration {
     export const CONFIG_PATH: string = "/etc/ksm/config.json";
@@ -68,6 +69,24 @@ export namespace configuration {
             fs.writeFileSync(path, JSON.stringify(serverConfig, null, 4));
         } catch (e) {
             logger.error("Cannot write file: " + e);
+            handleException(e);
+        }
+    }
+
+    export function writeService(fid: string, content: string): void {
+        try {
+            fs.writeFileSync(path.join("/etc/systemd/system/", fid + ".service"), content);
+        } catch (e) {
+            logger.error("Cannot write file: " + e);
+            handleException(e);
+        }
+    }
+
+    export function deleteService(fid: string): void {
+        try {
+            fs.unlinkSync(path.join("/etc/systemd/system/", fid + ".service"));
+        } catch (e) {
+            logger.error("Cannot delete file: " + e);
             handleException(e);
         }
     }

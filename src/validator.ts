@@ -6,7 +6,7 @@ export namespace validator {
             if (typeof server[i].path != "string") {
                 throw new Error("Invalid file format");
             }
-            if (typeof server[i].pid != "number") {
+            if (typeof server[i].fid != "string") {
                 throw new Error("Invalid file format");
             }
         }

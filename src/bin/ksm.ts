@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import {logger} from "../logger";
 import * as api from "../api";
-import add from "./add";
-import remove from "./remove";
 import list from "./list";
+import install from "./install";
+import uninstall from "./uninstall";
+import start from "./start";
 
 if (process.geteuid == null || process.geteuid() != 0) {
     logger.error("KSM must be run with root privileges")
@@ -23,11 +24,14 @@ const command: string | undefined = process.argv.shift();
 if (command == "list") {
     process.exit(list(process.argv));
 }
-if (command == "add") {
-    process.exit(add(process.argv));
+if (command == "install") {
+    process.exit(install(process.argv));
 }
-if (command == "remove") {
-    process.exit(remove(process.argv));
+if (command == "uninstall") {
+    process.exit(uninstall(process.argv));
+}
+if (command == "start") {
+    process.exit(start(process.argv));
 }
 
 console.log("Usage: kms <command> [<options>]");

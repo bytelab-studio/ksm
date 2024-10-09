@@ -16,7 +16,7 @@ export default function list(args: string[]): number {
     }
 
     const serverlist: api.Serverlist = api.configuration.readServerlist();
-    serverlist.forEach(s => logger.log(`${s.path} :: ${s.pid == -1 ? "None" : s.pid}`));
+    serverlist.forEach(s => logger.log(`${s.path} :: ${s.fid}`));
 
     return 0;
 }

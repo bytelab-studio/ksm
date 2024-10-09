@@ -32,7 +32,7 @@ export interface ServerConfig {
 }
 
 export interface ServerEntry {
-    pid: number | -1;
+    fid: string;
     path: string;
 }
 

@@ -12,12 +12,10 @@ if (process.geteuid() !== 0) {
     process.exit(1);
 }
 
-const cron_file = "/etc/cron.d/ksm-livecycle";
 const config_path = "/etc/ksm";
 
 try {
     console.log("Remove data");
-    fs.unlinkSync(cron_file);
     fs.rmdirSync(config_path, {recursive: true});
 } catch (e) {
     console.log("Failed to execute pre-uninstall script:\n" + e);
