@@ -126,8 +126,8 @@ KSM comes with base configuration located at `/etc/ksm/config.json`
 ```json
 {
     "env": {
-        "ksm-config": "/etc/ksm/config.json",
-        "ksm-serverlist": "/etc/ksm/serverlist"
+        "KSM_CONFIG": "/etc/ksm/config.json",
+        "KSM_SERVERLIST": "/etc/ksm/serverlist"
     }
 }
 ```

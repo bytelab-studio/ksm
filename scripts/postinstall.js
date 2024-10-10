@@ -2,6 +2,7 @@
 const os = require("os");
 const fs = require("fs");
 const path = require("path");
+
 if (os.type() !== "Linux") {
     console.log("KMS is not running on a linux system so not all features can be provided");
     process.exit(0);
