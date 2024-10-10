@@ -74,7 +74,8 @@ Description=A KSM Server entry
 After=network.target
 
 [Service]
-ExecStart=ksm start ${fid}
+Environment="PATH=${path.join(__dirname, "../../../../../../bin/")}:$PATH"
+ExecStart="${path.join(__dirname, "../../../../../../bin/ksm")}" start ${fid}
 WorkingDirectory=/
 Restart=always
 User=${user}
